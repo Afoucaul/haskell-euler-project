@@ -6,6 +6,13 @@ prime n
     | otherwise = all (\x -> n `rem` x /= 0) [s, (s-1)..2]
                   where s = (floor $ sqrt $ fromIntegral n)
 
-greatestPower n boundary
+greatestPower boundary n
     | n > boundary      = 1
-    | otherwise         = n * greatestPower n (boundary `div` n)
+    | otherwise         = n * greatestPower (boundary `div` n) n
+
+
+smallestProduct n = product $ map (greatestPower n) $ takeWhile (<=n) primes
+                    where primes = filter prime [2..]
+
+
+solution = smallestProduct 20
