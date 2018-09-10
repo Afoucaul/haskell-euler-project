@@ -14,3 +14,5 @@ pythagoreanTriplets = [(a, b, cs) | (a, b) <- unfoldr [(1, 1)] nextCouple,
                        let c = a^2 + b^2, 
                        let cs = floor $ sqrt $ fromIntegral c,
                        isPerfectSquare c]
+
+solution = (\(a, b, c) -> a*b*c) $ head $ filter (\(x, y, z) -> x + y + z == 1000) pythagoreanTriplets
